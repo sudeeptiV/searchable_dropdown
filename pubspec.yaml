@@ -1,6 +1,6 @@
 name: form_searchable_dropdown
 description: "A customizable Flutter package with searchable dropdowns, filtering, and styling, ideal for intuitive transactional data selection."
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/sudeeptiV/form_searchable_dropdown.git
 
 environment:

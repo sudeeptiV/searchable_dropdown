@@ -45,13 +45,14 @@ class FormSearchableDropdown<T> extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _FormSearchableDropdownState<T> createState() => _FormSearchableDropdownState<T>();
+  _FormSearchableDropdownState<T> createState() =>
+      _FormSearchableDropdownState<T>();
 }
 
 class _FormSearchableDropdownState<T> extends State<FormSearchableDropdown<T>> {
   late TextEditingController searchController;
-  late List<T> _filteredItems;
-  T? _selectedItem;
+  late List<T> filteredItems;
+  T? selectedItem;
   bool isDropdownOpen = false;
   FocusNode focusNode = FocusNode();
 
@@ -59,12 +60,12 @@ class _FormSearchableDropdownState<T> extends State<FormSearchableDropdown<T>> {
   void initState() {
     super.initState();
     searchController = TextEditingController();
-    _filteredItems = widget.items;
+    filteredItems = widget.items;
   }
 
   void _filterItems(String query) {
     setState(() {
-      _filteredItems = widget.items.where((item) {
+      filteredItems = widget.items.where((item) {
         final itemLabel =
             widget.itemLabelBuilder?.call(item) ?? item.toString();
         return widget.isCaseSensitive
@@ -132,16 +133,16 @@ class _FormSearchableDropdownState<T> extends State<FormSearchableDropdown<T>> {
               borderRadius: BorderRadius.circular(widget.borderRadius),
             ),
             child: ListView.builder(
-              itemCount: _filteredItems.length,
+              itemCount: filteredItems.length,
               itemBuilder: (context, index) {
-                final item = _filteredItems[index];
+                final item = filteredItems[index];
                 return ListTile(
                   title: Text(
                     widget.itemLabelBuilder?.call(item) ?? item.toString(),
                   ),
                   onTap: () {
                     setState(() {
-                      _selectedItem = item;
+                      selectedItem = item;
                       searchController.text =
                           widget.itemLabelBuilder?.call(item) ??
                               item.toString();
