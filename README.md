@@ -16,7 +16,7 @@ Add the package to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  searchable_dropdown: 1.0.0
+  form_searchable_dropdown: 1.0.0
 ```
 
 Then run:
@@ -31,7 +31,7 @@ Here's an example of how to use `SearchableDropdown` in your Flutter app:
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:searchable_dropdown/searchable_dropdown.dart';
+import 'package:form_searchable_dropdown/form_searchable_dropdown.dart';
 
 void main() {
   runApp(const MyApp());
@@ -88,5 +88,5 @@ class MyApp extends StatelessWidget {
 
 ## Contributing
 
-Contributions are welcome! Please submit issues and pull requests on the [GitHub repository](https://github.com/sudeeptiV/searchable_dropdown.git).
+Contributions are welcome! Please submit issues and pull requests on the [GitHub repository](https://github.com/sudeeptiV/form_searchable_dropdown.git).
 

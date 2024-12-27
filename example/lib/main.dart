@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:searchable_dropdown/searchable_dropdown.dart';
+import 'package:form_searchable_dropdown/searchable_dropdown.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: SearchableDropdown<String>(
+            child: FormSearchableDropdown<String>(
               items: const ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry'],
               itemLabelBuilder: (item) => item,
               onChanged: (selected) => print('Selected: $selected'),

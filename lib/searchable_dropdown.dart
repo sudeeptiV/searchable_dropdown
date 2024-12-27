@@ -1,8 +1,8 @@
-library searchable_dropdown;
+library form_searchable_dropdown;
 
 import 'package:flutter/material.dart';
 
-class SearchableDropdown<T> extends StatefulWidget {
+class FormSearchableDropdown<T> extends StatefulWidget {
   final List<T> items;
   final String Function(T)? itemLabelBuilder;
   final ValueChanged<T?>? onChanged;
@@ -21,7 +21,7 @@ class SearchableDropdown<T> extends StatefulWidget {
   final Icon dropdownIcon;
   final Icon dropdownOpenIcon;
 
-  const SearchableDropdown({
+  const FormSearchableDropdown({
     Key? key,
     required this.items,
     this.itemLabelBuilder,
@@ -38,15 +38,17 @@ class SearchableDropdown<T> extends StatefulWidget {
     this.cursorColor = Colors.black,
     this.borderRadius = 4.0,
     this.enabledBorderColor = Colors.grey,
-    this.dropdownIcon = const Icon(Icons.arrow_drop_down_outlined, color: Colors.black),
-    this.dropdownOpenIcon = const Icon(Icons.arrow_drop_up_outlined, color: Colors.black),
+    this.dropdownIcon =
+        const Icon(Icons.arrow_drop_down_outlined, color: Colors.black),
+    this.dropdownOpenIcon =
+        const Icon(Icons.arrow_drop_up_outlined, color: Colors.black),
   }) : super(key: key);
 
   @override
-  _SearchableDropdownState<T> createState() => _SearchableDropdownState<T>();
+  _FormSearchableDropdownState<T> createState() => _FormSearchableDropdownState<T>();
 }
 
-class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
+class _FormSearchableDropdownState<T> extends State<FormSearchableDropdown<T>> {
   late TextEditingController searchController;
   late List<T> _filteredItems;
   T? _selectedItem;
@@ -63,7 +65,8 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
   void _filterItems(String query) {
     setState(() {
       _filteredItems = widget.items.where((item) {
-        final itemLabel = widget.itemLabelBuilder?.call(item) ?? item.toString();
+        final itemLabel =
+            widget.itemLabelBuilder?.call(item) ?? item.toString();
         return widget.isCaseSensitive
             ? itemLabel.contains(query)
             : itemLabel.toLowerCase().contains(query.toLowerCase());
@@ -133,12 +136,15 @@ class _SearchableDropdownState<T> extends State<SearchableDropdown<T>> {
               itemBuilder: (context, index) {
                 final item = _filteredItems[index];
                 return ListTile(
-                  title: Text(widget.itemLabelBuilder?.call(item) ?? item.toString(),),
+                  title: Text(
+                    widget.itemLabelBuilder?.call(item) ?? item.toString(),
+                  ),
                   onTap: () {
                     setState(() {
                       _selectedItem = item;
                       searchController.text =
-                          widget.itemLabelBuilder?.call(item) ?? item.toString();
+                          widget.itemLabelBuilder?.call(item) ??
+                              item.toString();
                       isDropdownOpen = false;
                     });
                     widget.onChanged?.call(item);
