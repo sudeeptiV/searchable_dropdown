@@ -1,6 +1,6 @@
 # SearchableDropdown
 
-`SearchableDropdown` is a highly customizable Flutter package that provides a searchable dropdown menu for selecting items from a list. It simplifies building user-friendly and feature-rich dropdowns with filtering capabilities.
+`SearchableDropdown` is a highly customizable Flutter package that provides a searchable dropdown menu for selecting items from a list. It simplifies building user-friendly and feature-rich dropdowns with filtering capabilities useful for transactional data .
 
 ## Features
 
