@@ -1,178 +1,92 @@
-with generate_tree you can create a tree structure with checkbox option inside your app. It needs less code,
-you just need a List map to create this tree.
+# SearchableDropdown
 
-## Usage
-
-To use this package, add <b>generate_tree</b> as a dependency in your pubspec.yaml file.
-
-<BR>
-<Table>
-    <tr>
-        <td><img src="https://ik.imagekit.io/gajendramenaria9/gif1.gif?ik-sdk-version=javascript-1.4.3&updatedAt=1676791685679" alt="preview2"/></td>
-<td><img src="https://ik.imagekit.io/gajendramenaria9/gif2.gif?ik-sdk-version=javascript-1.4.3&updatedAt=1676791681599" alt="preview"/></td>
-    </tr>
-</Table>
+`SearchableDropdown` is a highly customizable Flutter package that provides a searchable dropdown menu for selecting items from a list. It simplifies building user-friendly and feature-rich dropdowns with filtering capabilities.
 
 ## Features
 
-<ul>
-<li><b>Single tick checkbox</b>
-<ul>
-    <li>set 'selectOneToAll' property 'false' to select only one at a time</li>
-</ul>
-</li>
-<li><b>Multi select checkbox</b>
-<ul>
-<li>set 'selectOneToAll' property 'true' to select all children</li>
-<li>get all node details in onChecked()</li>
-</ul>
-</li>
-<li><b>change the colors of checkbox</b></li>
-<li><b>change the colors of text</b></li>
-<li><b>onChecked function provides the value</b>
-<ul>
-<li><b>node:</b> all child values and current selected node values</li>
-<li><b>checked:</b> provides the bool value that the checkbox is checked or not</li>
-<li><b>commonID:</b> returns the common id when selectOneToAll is true</li>
-</ul>
-</li>
-</ul>
+- **Search Functionality**: Easily filter items in the dropdown using a search bar.
+- **Customizable UI**: Configure hint text, icons, borders, cursor styles, and more.
+- **Case-Sensitivity Option**: Toggle case sensitivity in search.
+- **Clear Button Support**: Optionally show a clear button to reset the selection.
+- **Handles No Results**: Display a widget when no matching results are found.
 
-## Getting started
+## Installation
 
-Follow this steps to use this package
+Add the package to your `pubspec.yaml` file:
 
-## Install
-
-```html
-generate_tree: ^2.2.3
+```yaml
+dependencies:
+  searchable_dropdown: 1.0.0
 ```
 
-## Import package
+Then run:
 
-```dart
-import 'generate_tree/generate_tree.dart';
+```sh
+flutter pub get
 ```
 
-first you will need a data list:
+## Usage
+
+Here's an example of how to use `SearchableDropdown` in your Flutter app:
 
 ```dart
-final List data = [
-      {
-        "checked": true,
-        "children": [
-          {
-            "checked": true,
-            "show": false,
-            "children": [],
-            "id": 11,
-            "pid": 1,
-            "commonID": 1,
-            "title": "Child title 11"
-          }
-        ],
-        "id": 1,
-        "pid": 0,
-        "commonID": 1,
-        "show": false,
-        "title": "Parent title 1"
-      },
-      {
-        "checked": true,
-        "show": false,
-        "children": [],
-        "id": 2,
-        "commonID": 2,
-        "pid": 0,
-        "title": "Parent title 2"
-      },
-      {
-        "checked": true,
-        "children": [
-          {
-            "checked": true,
-            "children": [],
-            "id": 31,
-            "commonID": 3,
-            "pid": 3,
-            "show": false,
-            "title": "Parent title 3.1"
-          },
-          {
-            "checked": true,
-            "children": [
-              {
-                "checked": true,
-                "children": [],
-                "id": 311,
-                "commonID": 3,
-                "pid": 31,
-                "show": false,
-                "title": "Parent title 3.1.1"
-              },
-              {
-                "checked": true,
-                "children": [],
-                "id": 312,
-                "commonID": 3,
-                "pid": 31,
-                "show": false,
-                "title": "Parent title 3.1.2"
-              }
-            ],
-            "id": 32,
-            "commonID": 3,
-            "pid": 2,
-            "show": false,
-            "title": "Parent title 3.2"
-          }
-        ],
-        "id": 3,
-        "commonID": 3,
-        "pid": 0,
-        "show": false,
-        "title": "Parent title 3"
-      }
-    ];
-```
+import 'package:flutter/material.dart';
+import 'package:searchable_dropdown/searchable_dropdown.dart';
 
-then pass the data to TreeNode.fromJson() to get the List<TreeNode>
-
-```dart
-final List<TreeNode> treeNodes =
-        data.map((item) => TreeNode.fromJson(item)).toList();
-```
-
-Now pass this treeNodes to GenerateTree(data: treeNodes) to generate the tree
-
-```dart
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(
-      title: Text('Generate Tree'),
-    ),
-    body: GenerateTree(
-      data: treeNodes,
-      selectOneToAll: false,
-      textColor: Colors.blue,
-      onChecked: (node, checked, commonID) {
-        print('isChecked : $checked');
-        print('common Node ID : ${commonID}');
-        print(
-            'children node data : ${node.children.map((e) => '${e.title}')}');
-      },
-      checkBoxColor: Colors.blue,
-      childrenPadding: EdgeInsets.only(left: 40, top: 0, right: 0, bottom: 0),
-    ),
-  );
+void main() {
+  runApp(const MyApp());
 }
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('Searchable Dropdown Demo')),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SearchableDropdown<String>(
+              items: const ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry'],
+              itemLabelBuilder: (item) => item,
+              onChanged: (selected) => print('Selected: $selected'),
+              hintText: 'Select a fruit',
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 ```
 
-## Developer
+## Parameters
 
-<H3>Gajendra Somawat</H3>
-<p>Instagram: <a href="https://www.instagram.com/gajendra_menaria9">gajendra_menaria9</a></p>
+### Required Parameters:
+- **`items`**: A list of items to display in the dropdown.
+- **`itemLabelBuilder`**: A function to define how items are displayed as text.
 
-## Additional Details
+### Optional Parameters:
+- **`onChanged`**: Callback function triggered when an item is selected.
+- **`hintText`**: Placeholder text for the dropdown.
+- **`textFormHeight`**: Height of the text form field.
+- **`listHeight`**: Height of the dropdown list.
+- **`hintStyle`**: Text style for the placeholder text.
+- **`inputDecoration`**: Custom input decoration for the text form field.
+- **`isCaseSensitive`**: Whether the search should be case-sensitive (default: `false`).
+- **`noResultsWidget`**: Widget displayed when no search results are found.
+- **`showClearButton`**: Whether to show a button to clear the search field (default: `true`).
+- **`cursorHeight`**: Height of the cursor in the text form field (default: `18.0`).
+- **`cursorColor`**: Color of the cursor (default: `Colors.black`).
+- **`borderRadius`**: Border radius for the input field and dropdown (default: `4.0`).
+- **`enabledBorderColor`**: Color of the border when the field is enabled (default: `Colors.grey`).
+- **`dropdownIcon`**: Icon displayed when the dropdown is closed (default: `Icons.arrow_drop_down_outlined`).
+- **`dropdownOpenIcon`**: Icon displayed when the dropdown is open (default: `Icons.arrow_drop_up_outlined`).
 
-for more details visit example page or contact on <a href="https://www.instagram.com/gajendra_menaria9">Instagram</a>
+## Contributing
+
+Contributions are welcome! Please submit issues and pull requests on the [GitHub repository](https://github.com/sudeeptiV/searchable_dropdown.git).
+
