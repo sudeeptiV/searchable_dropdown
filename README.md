@@ -9,6 +9,17 @@
 - **Case-Sensitivity Option**: Toggle case sensitivity in search.
 - **Clear Button Support**: Optionally show a clear button to reset the selection.
 - **Handles No Results**: Display a widget when no matching results are found.
+---
+
+<Table>
+    <tr>
+        <td><img src="https://ik.imagekit.io/sudeeptiV/form_searchable_dropdown/search_in_dropdown.gif?updatedAt=1735628076254" alt="preview2"/></td>
+<td><img src="https://ik.imagekit.io/sudeeptiV/form_searchable_dropdown/seacheable_dropdown.gif?updatedAt=1735628076191" alt="preview"/></td>
+   <td><h1></h1></td>
+    </tr>
+</Table>
+
+---
 
 ## Installation
 
