@@ -27,7 +27,7 @@ Add the package to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  form_searchable_dropdown: 1.0.1
+  form_searchable_dropdown: 1.0.2
 ```
 
 Then run:

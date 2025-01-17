@@ -7,3 +7,8 @@
 <ul>
 <li>Format code structure  </li>
 </ul>
+
+## 1.0.2
+<ul>
+<li>Displayed app functionality as GIF in README.md  </li>
+</ul>
